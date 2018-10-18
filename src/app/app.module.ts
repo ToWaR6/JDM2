@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatFormFieldModule,MatInputModule, MatSelectModule} from '@angular/material';
@@ -11,6 +12,7 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
+    MatButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,

@@ -5,8 +5,24 @@
   </h1>
   <img width="300" alt="Angular Logo" src="../assets/drawable/logovectocarréVARIANTE_grand.png">
 </div>
-<form class="form-container">
-  <mat-form-field>
-    <input matInput placeholder="Mot recherché" value="Chien">
-</mat-form-field>
-
+<div  class="form-container" >
+  <form [formGroup]="searchForm" layout="row" layout-align="center center" >
+    <!--Ici on rentre le mot recherché-->
+    <mat-form-field>
+      <input matInput placeholder="Mot recherché" value="Chien" required>
+    </mat-form-field>
+    <!--Autocomplete ici on choisi son option de recherche is_a, etc-->
+    <mat-form-field>
+      <input  matInput formControlName="relationGroup" type="text"  placeholder="Relation"  [matAutocomplete]="autoGroup">
+      <mat-autocomplete #autoGroup="matAutocomplete">
+        <mat-optgroup *ngFor="let group of relationGroupOptions | async" [label]="group.letter">
+          <mat-option *ngFor="let name of group.names" [value]="name">
+            {{name}}
+          </mat-option>
+        </mat-optgroup>
+      </mat-autocomplete>
+    </mat-form-field>
+    <!--Bouton de validation-->
+    <button mat-raised-button>Recherché</button>
+  </form>
+</div>
