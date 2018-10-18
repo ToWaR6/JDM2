@@ -1,0 +1,26 @@
+<form [formGroup]="searchForm"  >
+    <!--Ici on rentre le mot recherché-->
+    <mat-form-field>
+      <input matInput placeholder="Mot recherché" value="Chien" required>
+    </mat-form-field>
+    <!--Autocomplete ici on choisi son option de recherche is_a, etc-->
+    <mat-form-field>
+      <input (keyup.enter)="onEnter($event)"  matInput formControlName="relationGroup" type="text"  placeholder="Relation"  [matAutocomplete]="autoGroup">
+      <mat-autocomplete  #autoGroup="matAutocomplete">
+        <mat-optgroup *ngFor="let group of relationGroupOptions | async" [label]="group.letter">
+          <mat-option (onSelectionChange)="onEnter($event)" *ngFor="let name of group.names" [value]="name">
+            {{name}}
+          </mat-option>
+        </mat-optgroup>
+      </mat-autocomplete>
+    </mat-form-field>
+    <!--Bouton de validation-->
+    <button mat-raised-button>Rechercher</button>
+  </form>
+
+<mat-chip-list >
+  <mat-chip *ngFor="let relation of chooseRelation" [selectable]="selectable" [removable]="removable">
+    {{name}}
+    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+  </mat-chip> 
+<mat-chip-list>
