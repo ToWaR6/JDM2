@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { FrenchOrderPipe } from '../french-order.pipe';
 
 export interface relationGroup {
   letter: string;
@@ -11,7 +11,6 @@ export interface relationGroup {
 
 export const _filter = (opt: string[], value: string): string[] => {
   const filterValue = value.toLowerCase();
-
   return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
 };
 
@@ -35,7 +34,8 @@ export class SearchComponent implements OnInit {
     names: ['California', 'Colorado', 'Connecticut']
   }];
 
-  choosenRelation :string[] = [];
+
+  choosenRelations :string[] = [];
   relationGroupOptions: Observable<relationGroup[]>;
     
   constructor(private fb: FormBuilder) {}
@@ -73,8 +73,23 @@ export class SearchComponent implements OnInit {
         for(let name of relation.names){
           let found = relation.names.indexOf(value);
           if(found != -1){
-            this.choosenRelation.push(value);
+            this.choosenRelations.push(value);
             relation.names.splice(found,1);
+          }
+        }
+      }
+    }
+
+    remove(relationName :string){
+      const index = this.choosenRelations.indexOf(relationName);
+
+      if(index >=0){
+        this.choosenRelations.splice(index,1);
+        for(let relationBrowsed of this.relationGroups){
+          if(relationName[0]===relationBrowsed.letter){
+            relationBrowsed.names.push(relationName); 
+            relationBrowsed.names.sort(FrenchOrderPipe.alphabeticalOrder);
+            break;
           }
         }
       }
