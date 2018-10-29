@@ -1,4 +1,4 @@
-<form [formGroup]="searchForm"  >
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()" >
     <!--Ici on rentre le mot recherché-->
     <mat-form-field>
       <input matInput placeholder="Mot recherché" value="Chien" required>
@@ -15,12 +15,15 @@
       </mat-autocomplete>
     </mat-form-field>
     <!--Bouton de validation-->
-    <button mat-raised-button>Rechercher</button>
+    <button  type="submit" mat-raised-button>Rechercher</button>
+    <mat-chip-list ><p *ngIf="choosenRelations.length>0">Mes relations : </p>
+      <mat-chip *ngFor="let relation of choosenRelations" [selectable]="selectable" [removable]="removable" (removed)="remove(relation)">
+        {{relation}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip> 
+    </mat-chip-list>
   </form>
 
-<mat-chip-list ><p *ngIf="choosenRelations.length>0">Mes relations : </p>
-  <mat-chip *ngFor="let relation of choosenRelations" [selectable]="selectable" [removable]="removable" (removed)="remove(relation)">
-    {{relation}}
-    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-  </mat-chip> 
-<mat-chip-list>
+
+
+<app-result [word]="searchWord"></app-result>

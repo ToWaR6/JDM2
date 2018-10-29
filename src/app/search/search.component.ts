@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup = this.fb.group({
     relationGroup: '',
   });
-  
+  searchWord = "";
   relationGroups: relationGroup[] = [{
     letter: 'A',
     names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas']
@@ -93,5 +93,10 @@ export class SearchComponent implements OnInit {
           }
         }
       }
+    }
+
+    onSubmit(){
+      this.searchWord = "test"
+      console.log(this.searchWord);
     }
 }
