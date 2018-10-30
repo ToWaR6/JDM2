@@ -14,7 +14,11 @@ export const _filter = (opt: string[], value: string): string[] => {
   const filterValue = value.toLowerCase();
   return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
 };
-
+export interface Word{
+  position :number;
+  word : string;
+  weight : number;
+}
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -27,7 +31,7 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup = this.fb.group({
     relationGroup: '',
   });
-  searchWord = "";
+  results :Word[];
   relationGroups: relationGroup[] = [{
     letter: 'A',
     names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas']
@@ -99,7 +103,9 @@ export class SearchComponent implements OnInit {
 
     onSubmit(){
       this.isSearching = true;
-      this.searchWord = "test"
-      console.log(this.searchWord);
+      this.results = [
+        {position:2,word:"chien",weight:1},
+        {position:1, word :"chat",weight:0.0243}
+      ];
     }
 }

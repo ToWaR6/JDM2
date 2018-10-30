@@ -1,8 +1,9 @@
 <div [ngClass]="!isSearching ? 'container':'navbar-expand-lg navbar-light bg-light'">
-    <div  [ngClass]="!isSearching ? 'row justify-content-center align-items-center' : 'd-inline-block'" style="padding-left: 0px;  padding-right: 0px;">
+    <div *ngIf="!isSearching" class='row justify-content-center align-items-center' style="padding-left: 0px;  padding-right: 0px;">
         <img class ="img-fluid" [ngClass]="!isSearching? '' :'small-img'"alt="Angular Logo" src="../assets/drawable/logo.png">
     </div>
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" >
+        <img *ngIf="isSearching" class ="img-fluid" [ngClass]="!isSearching? '' :'small-img'"alt="Angular Logo" src="../assets/drawable/logo.png">
         <div [ngClass]="!isSearching ? 'row justify-content-center align-items-center' : 'd-inline-block'">
         <!--Ici on rentre le mot recherché-->
         <mat-form-field class="form-group">
@@ -22,7 +23,7 @@
         <!--Bouton de validation-->
         <button  class="form-control" type="submit" mat-raised-button>Rechercher</button>
       </div>
-      <div *ngIf="choosenRelations.length>0" [ngClass]="!isSearching ? 'row justify-content-center align-items-center' : 'd-inline-block'">
+      <div *ngIf="choosenRelations.length>0" [ngClass]="!isSearching ? 'row justify-content-center align-items-center' : ''">
         <mat-form-field class="relation-chip-list">
           <mat-chip-list #chipList>
             <mat-chip *ngFor="let relation of choosenRelations" [selectable]="selectable" [removable]="removable" (removed)="remove(relation)">
@@ -38,7 +39,4 @@
     </form>
  
 </div>
-<hr *ngIf="isSearching" />
-
-
-<app-result [word]="searchWord"></app-result>
+<app-result *ngIf="isSearching" [words]="results"></app-result>
