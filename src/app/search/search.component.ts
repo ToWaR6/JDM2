@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 import { FrenchOrderPipe } from '../french-order.pipe';
+import {trigger,query,style, transition,animate} from '@angular/animations';
 
 export interface relationGroup {
   letter: string;
@@ -22,6 +23,7 @@ export const _filter = (opt: string[], value: string): string[] => {
 export class SearchComponent implements OnInit {
   selectable = true;
   removable = true;
+  isSearching = false;
   searchForm: FormGroup = this.fb.group({
     relationGroup: '',
   });
@@ -96,6 +98,7 @@ export class SearchComponent implements OnInit {
     }
 
     onSubmit(){
+      this.isSearching = true;
       this.searchWord = "test"
       console.log(this.searchWord);
     }

@@ -1,10 +1,8 @@
-.form-container {
-  height: 100%
-}
+hr {
+  height: 2px;
+  background-color:#555;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 75%;
 
-.app-search{
-  display: flex;
-  align-items: center;     
-  align-items: center;
-  justify-content: center;
 }
