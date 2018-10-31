@@ -13,6 +13,7 @@ import {ResultComponent} from './search/result/result.component';
 import { FrenchOrderPipe } from './french-order.pipe';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { MatPaginatorModule } from '@angular/material';
     FrenchOrderPipe
   ],
   imports: [
+    MatTabsModule,
     MatButtonModule,
     BrowserModule,
     BrowserAnimationsModule,

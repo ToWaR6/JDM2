@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 import { FrenchOrderPipe } from '../french-order.pipe';
-import {trigger,query,style, transition,animate} from '@angular/animations';
+import {Relation} from './relation';
 
 export interface relationGroup {
   letter: string;
@@ -14,11 +14,6 @@ export const _filter = (opt: string[], value: string): string[] => {
   const filterValue = value.toLowerCase();
   return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
 };
-export interface Word{
-  position :number;
-  word : string;
-  weight : number;
-}
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -31,7 +26,7 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup = this.fb.group({
     relationGroup: '',
   });
-  results :Word[];
+  results :Relation[];
   relationGroups: relationGroup[] = [{
     letter: 'A',
     names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas']
@@ -104,8 +99,19 @@ export class SearchComponent implements OnInit {
     onSubmit(){
       this.isSearching = true;
       this.results = [
-        {position:2,word:"chien",weight:1},
-        {position:1, word :"chat",weight:0.0243}
+        {
+          name :"is_a",
+          words: [
+            {term:"chien",weight:1},
+            {term :"chat",weight:0.0243}
+          ]
+        },{
+          name :"is_not",
+          words: [
+            {term:"oiseau",weight:1},
+            {term :"humain",weight:1}
+          ]
+        }
       ];
     }
 }
