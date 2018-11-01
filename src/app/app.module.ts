@@ -14,6 +14,7 @@ import { FrenchOrderPipe } from './french-order.pipe';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSortModule} from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     FrenchOrderPipe
   ],
   imports: [
+    MatSortModule,
     MatTabsModule,
     MatButtonModule,
     BrowserModule,

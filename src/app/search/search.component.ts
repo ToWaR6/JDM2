@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup = this.fb.group({
     relationGroup: '',
   });
-  results :Relation[];
+  results  = new Array<Relation>();
   relationGroups: relationGroup[] = [{
     letter: 'A',
     names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas']
