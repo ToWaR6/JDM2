@@ -10,17 +10,19 @@ import {MatIconModule} from '@angular/material/icon'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SearchComponent} from './search/search.component';
 import {ResultComponent} from './search/result/result.component';
-import { FrenchOrderPipe } from './french-order.pipe';
+import {FrenchOrderPipe} from './french-order.pipe';
 import {MatTableModule} from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material';
+import {MatPaginatorModule} from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSortModule} from '@angular/material/sort';
+import {TableResultComponent} from './search/result/table-result/table-result.component';
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     ResultComponent,
-    FrenchOrderPipe
+    FrenchOrderPipe,
+    TableResultComponent
   ],
   imports: [
     MatSortModule,
