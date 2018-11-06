@@ -14,7 +14,7 @@
           <input class="form-control" matInput [value]="name" (keyup.enter)="onEnter($event)" formControlName="relationGroup" type="text"  placeholder="Relation"  [matAutocomplete]="autoGroup">
           <mat-autocomplete  #autoGroup="matAutocomplete">
             <mat-optgroup *ngFor="let group of relationGroupOptions | async" [label]="group.letter">
-              <mat-option (onSelectionChange)="onEnter($event)" (keyup.enter)="onEnter($event)" *ngFor="let name of group.names" [value]="name">
+              <mat-option  matTooltip="Info about the action Info about the action "  matTooltipPosition="after" (onSelectionChange)="onEnter($event)" (keyup.enter)="onEnter($event)" *ngFor="let name of group.names" [value]="name">
                 {{name}}
               </mat-option>
             </mat-optgroup>

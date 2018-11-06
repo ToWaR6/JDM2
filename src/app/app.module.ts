@@ -16,6 +16,7 @@ import {MatPaginatorModule} from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSortModule} from '@angular/material/sort';
 import {TableResultComponent} from './search/result/table-result/table-result.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import {TableResultComponent} from './search/result/table-result/table-result.co
     MatChipsModule,
     MatIconModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
