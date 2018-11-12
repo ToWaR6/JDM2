@@ -1,11 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
+export interface IRelation{
+  id:number;
+  position:number;
+  name:string;
+  help:string;
+}
 @Pipe({
   name: 'frenchOrder'
 })
 export class FrenchOrderPipe implements PipeTransform {
 
-  transform(array: Array<String>, args?: any): any {
+  transform(array: Array<IRelation>, args?: any): any {
 
     if(array != undefined){
       array.sort(FrenchOrderPipe.alphabeticalOrder);
@@ -13,10 +18,10 @@ export class FrenchOrderPipe implements PipeTransform {
     return array;
   }
 
-  static alphabeticalOrder(a :string, b:string){
-    if(a>b) return 1;
-    if(a<b) return -1
-    if (a===b) return 0;
+  static alphabeticalOrder(a :IRelation, b:IRelation){
+    if(a.name>b.name) return 1;
+    if(a.name<b.name) return -1
+    if (a.name===b.name) return 0;
     return 0;
   }
 

@@ -17,6 +17,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSortModule} from '@angular/material/sort';
 import {TableResultComponent} from './search/result/table-result/table-result.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { HttpClientModule } from '@angular/common/http'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     TableResultComponent
   ],
   imports: [
+    HttpClientModule,
     MatSortModule,
     MatTabsModule,
     MatButtonModule,

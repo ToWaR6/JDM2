@@ -4,15 +4,22 @@ import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 import { FrenchOrderPipe } from '../french-order.pipe';
 import {Relation} from './relation';
+import { HttpClient } from '@angular/common/http';
 
 export interface relationGroup {
-  letter: string;
-  names: string[];
+  letter:string;
+  relations:IRelation[];
+}
+export interface IRelation{
+  id:number;
+  position:number;
+  name:string;
+  help:string;
 }
 
-export const _filter = (opt: string[], value: string): string[] => {
-  const filterValue = value.toLowerCase();
-  return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+export const _filter = (opt: IRelation[], value: string): IRelation[] => {
+  const filterValue = value;
+  return opt.filter(item => item.name.toLowerCase().indexOf(filterValue) === 0);
 };
 @Component({
   selector: 'app-search',
@@ -27,36 +34,41 @@ export class SearchComponent implements OnInit {
     relationGroup: '',
   });
   results  = new Array<Relation>();
-  relationGroups: relationGroup[] = [{
-    letter: 'A',
-    names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas']
-  }, {
-    letter: 'C',
-    names: ['California', 'Colorado', 'Connecticut']
-  }];
+  relationGroups: relationGroup[] =[];
 
 
-  choosenRelations :string[] = [];
+  choosenRelations :IRelation[] = [];
   relationGroupOptions: Observable<relationGroup[]>;
     
-  constructor(private fb: FormBuilder) {}
-  
+  constructor(private fb: FormBuilder,private http:HttpClient) {
+    this.getJSON().subscribe(data => {
+      this.relationGroups = data;
+      this.ngOnInit();
+    });
+  }
+
+
+  public getJSON(): Observable<any> {
+    return this.http.get("./assets/relations.json")
+  }
   ngOnInit() {
-    this.relationGroupOptions = this.searchForm.get('relationGroup')!.valueChanges
+    if(this.relationGroups.length > 0){
+      this.relationGroups.map(item=>item.relations.sort(FrenchOrderPipe.alphabeticalOrder));
+      this.relationGroupOptions = this.searchForm.get('relationGroup')!.valueChanges
       .pipe(
-        startWith(''),
+        startWith(),
         map(value => this._filterGroup(value)
-        .filter(group => group.names.length > 0)
+        .filter(group => group.relations.length > 0)
         )
-        
       );
+    }
   }
   
     private _filterGroup(value: string): relationGroup[] {
       if (value) {
         return this.relationGroups
-          .map(group => ({letter: group.letter, names: _filter(group.names, value)}))
-          .filter(group => group.names.length > 0);
+          .map(group => ({letter: group.letter, relations: _filter(group.relations, value)}))
+          .filter(group => group.relations.length > 0);
       }
       return this.relationGroups;
     }
@@ -64,32 +76,39 @@ export class SearchComponent implements OnInit {
     onEnter(event : any){
       let value;
       if(event.source != undefined) { //Si c'est mat-option
-        value = event.source.value;
+        value = this._getRelationFromName(event.source.value);
         event.source.value = "";
       }else{ //Si c'est un input classique
-        value = event.explicitOriginalTarget.value;
+        value = this._getRelationFromName(event.explicitOriginalTarget.value);
         event.explicitOriginalTarget.value ="";
       }
-      for(let relation of this.relationGroups){
-        for(let name of relation.names){
-          let found = relation.names.indexOf(value);
+      for(let relationGroup of this.relationGroups){
+        for(let relation of relationGroup.relations){
+          let found = relationGroup.relations.indexOf(value);
           if(found != -1){
             this.choosenRelations.push(value);
-            relation.names.splice(found,1);
+            relationGroup.relations.splice(found,1);
           }
         }
       }
     }
-
-    remove(relationName :string){
-      const index = this.choosenRelations.indexOf(relationName);
-
+    _getRelationFromName(name:string){
+      for(let relations of this.relationGroups){
+        for(let relation of relations.relations){
+          if(relation.name==name)
+            return relation;
+        }
+      }
+      return name;
+    }
+    remove(relation :IRelation){
+      const index = this.choosenRelations.indexOf(relation);
       if(index >=0){
         this.choosenRelations.splice(index,1);
         for(let relationBrowsed of this.relationGroups){
-          if(relationName[0]===relationBrowsed.letter){
-            relationBrowsed.names.push(relationName); 
-            relationBrowsed.names.sort(FrenchOrderPipe.alphabeticalOrder);
+          if(relation.name[0].toUpperCase()===relationBrowsed.letter){
+            relationBrowsed.relations.push(relation); 
+            relationBrowsed.relations.sort(FrenchOrderPipe.alphabeticalOrder);
             break;
           }
         }

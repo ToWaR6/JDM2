@@ -1,0 +1,870 @@
+[
+  {"letter" :"R",
+  "relations":[
+    {
+      "position": 0,
+      "id": 0,
+      "name": "r_associated",
+      "help": "Il est demandé d'énumérer les termes les plus étroitement associés au mot cible... Ce mot vous fait penser à quoi ?"
+    },
+    {
+      "position": 1,
+      "id": 1,
+      "name": "r_raff_sem",
+      "help": "Raffinement sémantique vers un usage particulier du terme source"
+    },
+    {
+      "position": 2,
+      "id": 2,
+      "name": "r_raff_morpho",
+      "help": "Raffinement morphologique vers un usage particulier du terme source"
+    },
+    {
+      "position": 3,
+      "id": 3,
+      "name": "r_domain",
+      "help": "Il est demandé de fournir des domaines relatifs au mot cible. Par exemple, pour 'corner', on pourra donner les domaines 'football' ou 'sport'."
+    },
+    {
+      "position": 4,
+      "id": 4,
+      "name": "r_pos",
+      "help": "Partie du discours (Nom, Verbe, Adjectif, Adverbe, etc.)"
+    },
+    {
+      "position": 5,
+      "id": 5,
+      "name": "r_syn",
+      "help": "Il est demandé d'énumérer les synonymes ou quasi-synonymes de ce terme."
+    },
+    {
+      "position": 6,
+      "id": 6,
+      "name": "r_isa",
+      "help": "Il est demandé d'énumérer les GENERIQUES/hyperonymes du terme. Par exemple, 'animal' et 'mammifère' sont des génériques de 'chat'."
+    },
+    {
+      "position": 7,
+      "id": 7,
+      "name": "r_anto",
+      "help": "Il est demandé d'énumérer des contraires du terme. Par exemple, 'chaud' est le contraire de 'froid'."
+    },
+    {
+      "position": 8,
+      "id": 8,
+      "name": "r_hypo",
+      "help": "Il est demandé d'énumérer des SPECIFIQUES/hyponymes du terme. Par exemple, 'mouche', 'abeille', 'guêpe' pour 'insecte'."
+    },
+    {
+      "position": 9,
+      "id": 9,
+      "name": "r_has_part",
+      "help": "Il faut donner des PARTIES/constituants/éléments (a pour méronymes) du mot cible. Par exemple, 'voiture' a comme parties : 'porte', 'roue', 'moteur', ..."
+    },
+    {
+      "position": 10,
+      "id": 10,
+      "name": "r_holo",
+      "help": "Il est démandé d'énumérer des 'TOUT' (a pour holonymes)  de l'objet en question. Pour 'main', on aura 'bras', 'corps', 'personne', etc... Le tout est aussi l'ensemble comme 'classe' pour 'élève'."
+    },
+    {
+      "position": 11,
+      "id": 11,
+      "name": "r_locution",
+      "help": "A partir d'un terme, il est demandé d'énumérer les locutions, expression ou mots composés en rapport avec ce terme. Par exemple, pour 'moulin', ou pourra avoir 'moulin à vent', 'moulin à eau', 'moulin à café'. Pour 'vendre', on pourra avoir 'vendre la peau de l'ours avant de l'avoir tué', 'vendre à perte', etc.."
+    },
+    {
+      "position": 12,
+      "id": 12,
+      "name": "r_flpot",
+      "help": "(relation interne) potentiel de relation"
+    },
+    {
+      "position": 13,
+      "id": 13,
+      "name": "r_agent",
+      "help": "L'agent (qu'on appelle aussi le sujet) est l'entité qui effectue l'action, OU la subit pour des formes passives ou des verbes d'état. Par exemple, dans - Le chat mange la souris -, l'agent est le chat. Des agents typiques de 'courir' peuvent être 'sportif', 'enfant',..."
+    },
+    {
+      "position": 14,
+      "id": 14,
+      "name": "r_patient",
+      "help": "Le patient (qu'on appelle aussi l'objet) est l'entité qui subit l'action. Par exemple dans - Le chat mange la souris -, le patient est la souris. Des patients typiques de manger peuvent être 'viande', 'légume', 'pain', ..."
+    },
+    {
+      "position": 15,
+      "id": 15,
+      "name": "r_lieu",
+      "help": "Il est demandé d'énumérer les LIEUX typiques où peut se trouver le terme/objet en question."
+    },
+    {
+      "position": 16,
+      "id": 16,
+      "name": "r_instr",
+      "help": "L'instrument est l'objet avec lequel on fait l'action. Dans - Il mange sa salade avec une fourchette -, fourchette est l'instrument. Des instruments typiques de 'tuer' peuvent être 'arme', 'pistolet', 'poison', ..."
+    },
+    {
+      "position": 17,
+      "id": 17,
+      "name": "r_carac",
+      "help": "Pour un terme donné, souvent un objet, il est demandé d'en énumérer les CARACtéristiques (adjectifs) possibles/typiques. Par exemple, 'liquide', 'froide', 'chaude', pour 'eau'."
+    },
+    {
+      "position": 18,
+      "id": 18,
+      "name": "r_data",
+      "help": "Informations diverses (plutôt d'ordre lexicales)"
+    },
+    {
+      "position": 19,
+      "id": 19,
+      "name": "r_lemma",
+      "help": "Le lemme (par exemple 'mangent a pour lemme  'manger' ; 'avions' a pour lemme 'avion' ou 'avoir')."
+    },
+    {
+      "position": 20,
+      "id": 20,
+      "name": "r_has_magn",
+      "help": "La magnification ou amplification, par exemple - forte fièvre - ou - fièvre de cheval - pour fièvre. Ou encore - amour fou - pour amour, - peur bleue - pour peur."
+    },
+    {
+      "position": 21,
+      "id": 21,
+      "name": "r_has_antimagn",
+      "help": "L'inverse de la magnification, par exemple - bruine - pour pluie."
+    },
+    {
+      "position": 22,
+      "id": 22,
+      "name": "r_family",
+      "help": "Des mots de la même famille lexicale sont demandés (dérivation morphologique, par exemple). Par exemple, pour 'lait' on pourrait mettre 'laitier', 'laitage', 'laiterie', etc."
+    },
+    {
+      "position": 23,
+      "id": 23,
+      "name": "r_carac-1",
+      "help": "Quels sont les objets (des noms) possédant typiquement/possiblement la caractérisque suivante ? Par exemple, 'soleil', 'feu', pour 'chaud'."
+    },
+    {
+      "position": 24,
+      "id": 24,
+      "name": "r_agent-1",
+      "help": "Que peut faire ce SUJET ? (par exemple chat => miauler, griffer, etc.)"
+    },
+    {
+      "position": 25,
+      "id": 25,
+      "name": "r_instr-1",
+      "help": "L'instrument est l'objet avec lequel on fait l'action. Dans - Il mange sa salade avec une fourchette -, fourchette est l'instrument. On demande ici, ce qu'on peut faire avec un instrument donné..."
+    },
+    {
+      "position": 26,
+      "id": 26,
+      "name": "r_patient-1",
+      "help": "(inverse de r_patient) Que peut-on faire à cet OBJET. Pour 'pomme', on pourrait avoir 'manger', 'croquer', couper', 'éplucher',  etc."
+    },
+    {
+      "position": 27,
+      "id": 27,
+      "name": "r_domain-1",
+      "help": "inverse de r_domain : à un domaine, on associe des termes"
+    },
+    {
+      "position": 28,
+      "id": 28,
+      "name": "r_lieu-1",
+      "help": "A partir d'un lieu, il est demandé d'énumérer ce qui peut typiquement s'y trouver."
+    },
+    {
+      "position": 29,
+      "id": 29,
+      "name": "r_chunk_pred",
+      "help": "(interne) d'un prédicat quel chunk ?"
+    },
+    {
+      "position": 30,
+      "id": 30,
+      "name": "r_lieu_action",
+      "help": "A partir d'un lieu, énumérer les actions typiques possibles dans ce lieu."
+    },
+    {
+      "position": 31,
+      "id": 31,
+      "name": "r_action_lieu",
+      "help": "A partir d'une action (un verbe), énumérer les lieux typiques possibles où peut être réalisée cette action."
+    },
+    {
+      "position": 32,
+      "id": 32,
+      "name": "r_sentiment",
+      "help": "Pour un terme donné, évoquer des mots liés à des SENTIMENTS ou des EMOTIONS que vous pourriez associer à ce terme. Par exemple, la joie, le plaisir, le dégoût, la peur, la haine, l'amour, l'indifférence, l'envie, avoir peur, horrible, etc."
+    },
+    {
+      "position": 33,
+      "id": 33,
+      "name": "r_error",
+      "help": "lien d'erreur"
+    },
+    {
+      "position": 34,
+      "id": 34,
+      "name": "r_manner",
+      "help": "De quelles MANIERES peut être effectuée l'action (le verbe) proposée. Il s'agira d'un adverbe ou d'un équivalent comme une locution adverbiale, par exemple : 'rapidement', 'sur le pouce', 'goulûment', 'salement' ... pour 'manger'."
+    },
+    {
+      "position": 35,
+      "id": 35,
+      "name": "r_meaning",
+      "help": "Quels SENS/SIGNIFICATIONS pouvez vous donner au terme proposé. Il s'agira de termes évoquant chacun des sens possibles, par exemple : 'forces de l'ordre', 'contrat d'assurance', 'police typographique', ... pour 'police'."
+    },
+    {
+      "position": 36,
+      "id": 36,
+      "name": "r_infopot",
+      "help": "Information sémantique potentielle"
+    },
+    {
+      "position": 37,
+      "id": 37,
+      "name": "r_telic_role",
+      "help": "Le rôle télique indique le but ou la fonction du nom ou du verbe. Par exemple, couper pour couteau, scier pour scie, etc. C'est le rôle qu'on lui destine communément pour un artéfact, ou bien un rôle qu'on peut attribuer à un objet naturel (réchauffer, éclairer pour soleil)."
+    },
+    {
+      "position": 38,
+      "id": 38,
+      "name": "r_agentif_role",
+      "help": "De quelle(s)  manière(s)  peut être CRÉE/CONSTRUIT le terme suivant. On demande des verbes transitifs (le terme en est un complément d'objet) qui DONNENT NAISSANCE à l'entité désignée par le terme,  par exemple, 'construire' pour 'maison', 'rédiger'/'imprimer' pour 'livre' ou 'lettre'."
+    },
+    {
+      "position": 39,
+      "id": 39,
+      "name": "r_verbe-action",
+      "help": "du verbe vers l'action. Par exemple, construire -> construction , jardiner -> jardinage . C'est un terme directement dérivé (ayant la même racine). Applicable que pour un verbe et inverse de la relation 40 (action vers verbe)."
+    },
+    {
+      "position": 40,
+      "id": 40,
+      "name": "r_action-verbe",
+      "help": "de l'action vers le verbe. Par exemple, construction -> construire, jardinage -> jardiner. C'est un terme directement dérivé (ayant la même racine). Applicable que pour un nom et inverse de la relation 39 (verbe vers action)."
+    },
+    {
+      "position": 41,
+      "id": 41,
+      "name": "r_conseq",
+      "help": "B (que vous devez donner) est une CONSEQUENCE possible de A. A et B sont des verbes ou des noms.  Exemples : tomber -> se blesser ; faim -> voler ; allumer -> incendie ; négligence --> accident ; etc."
+    },
+    {
+      "position": 42,
+      "id": 42,
+      "name": "r_causatif",
+      "help": "B (que vous devez donner) est une CAUSE possible de A. A et B sont des verbes ou des noms.  Exemples : se blesser -> tomber ; vol -> pauvreté ; incendie -> négligence ; mort --> maladie ; etc."
+    },
+    {
+      "position": 43,
+      "id": 43,
+      "name": "r_adj-verbe",
+      "help": "Pour un adjectif de potentialité/possibilité, son verbe correspondant. Par exemple pour 'lavable' -> 'laver'"
+    },
+    {
+      "position": 44,
+      "id": 44,
+      "name": "r_verbe-adj",
+      "help": "Pour un verbe, son adjectif de potentialité/possibilité correspondant. Par exemple pour 'laver' -> 'lavable'"
+    },
+    {
+      "position": 45,
+      "id": 45,
+      "name": "r_chunk_sujet",
+      "help": "(interne)"
+    },
+    {
+      "position": 46,
+      "id": 46,
+      "name": "r_chunk_objet",
+      "help": "(interne)"
+    },
+    {
+      "position": 47,
+      "id": 47,
+      "name": "r_chunk_loc",
+      "help": "(interne)"
+    },
+    {
+      "position": 48,
+      "id": 48,
+      "name": "r_chunk_instr",
+      "help": "(interne)"
+    },
+    {
+      "position": 49,
+      "id": 49,
+      "name": "r_time",
+      "help": "Donner une valeur temporelle -quel moment- peut-on associer au terme indiqué (par exemple 'dormir' -> nuit, 'bronzer' -> été, 'fatigue' -> 'soir')"
+    },
+    {
+      "position": 50,
+      "id": 50,
+      "name": "r_object>mater",
+      "help": "Quel est la ou les MATIERE/SUBSTANCE pouvant composer l'objet qui suit. Par exemple, 'bois' pour 'poutre'."
+    },
+    {
+      "position": 51,
+      "id": 51,
+      "name": "r_mater>object",
+      "help": "Quel est la ou les CHOSES qui sont composés de la MATIERE/SUBSTANCE qui suit (exemple 'bois' -> poutre, table, ...)."
+    },
+    {
+      "position": 52,
+      "id": 52,
+      "name": "r_successeur-time",
+      "help": "Qu'est ce qui peut SUIVRE temporellement (par exemple Noêl -> jour de l'an, guerre -> paix, jour -> nuit,  pluie -> beau temps, repas -> sieste, etc) le terme suivant :"
+    },
+    {
+      "position": 53,
+      "id": 53,
+      "name": "r_make",
+      "help": "Que peut PRODUIRE le terme ? (par exemple abeille -> miel, usine -> voiture, agriculteur -> blé,  moteur -> gaz carbonique ...)"
+    },
+    {
+      "position": 54,
+      "id": 54,
+      "name": "r_product_of",
+      "help": "Le terme est le RESULTAT/PRODUIT de qui/quoi ?"
+    },
+    {
+      "position": 55,
+      "id": 55,
+      "name": "r_against",
+      "help": "A quoi le terme suivant S'OPPOSE/COMBAT/EMPECHE ? Par exemple, un médicament s'oppose à la maladie."
+    },
+    {
+      "position": 56,
+      "id": 56,
+      "name": "r_against-1",
+      "help": "Inverse de r_against (s'oppose à) - a comme opposition active (S'OPPOSE/COMBAT/EMPECHE). Par exemple, une bactérie à comme opposition antibiotique."
+    },
+    {
+      "position": 57,
+      "id": 57,
+      "name": "r_implication",
+      "help": "Qu'est-ce que le terme implique logiquement ? Par exemple : ronfler implique dormir, courir implique se déplacer, câlin implique contact physique. (attention ce n'est pas la cause ni le but...)"
+    },
+    {
+      "position": 58,
+      "id": 58,
+      "name": "r_quantificateur",
+      "help": "Quantificateur(s) typique(s) pour le terme,  indiquant une quantité. Par exemples, sucre -> grain, morceau - sel -> grain, pincée - herbe -> brin, touffe - ..."
+    },
+    {
+      "position": 59,
+      "id": 59,
+      "name": "r_masc",
+      "help": "L'équivalent masculin du terme : lionne --> lion."
+    },
+    {
+      "position": 60,
+      "id": 60,
+      "name": "r_fem",
+      "help": "L'équivalent féminin du terme : lion --> lionne."
+    },
+    {
+      "position": 61,
+      "id": 61,
+      "name": "r_equiv",
+      "help": "Termes strictement équivalent/identique : acronymes et sigles (PS -> parti socialiste), apocopes (ciné -> cinéma), entités nommées (Louis XIV -> Le roi soleil), etc. (attention il ne s'agit pas de synonyme)"
+    },
+    {
+      "position": 62,
+      "id": 62,
+      "name": "r_manner-1",
+      "help": "Quelles ACTIONS (verbes) peut-on effectuer de cette manière ? Par exemple, rapidement -> courir, manger, ..."
+    },
+    {
+      "position": 63,
+      "id": 63,
+      "name": "r_agentive_implication",
+      "help": "Les verbes ou actions qui sont impliqués dans la création de l'objet. Par exemple pour 'construire' un livre, il faut, imprimer, relier, brocher, etc. Il s'agit des étapes nécessaires à la réalisation du rôle agentif."
+    },
+    {
+      "position": 64,
+      "id": 64,
+      "name": "r_has_instance",
+      "help": "Une instance d'un 'type' est un individu particulier de ce type. Il s'agit d'une entité nommée (personne, lieu, organisation, etc) - par exemple, 'cheval' a pour instance possible 'Jolly Jumper', ou encore 'transatlantique' a pour instance possible 'Titanic'."
+    },
+    {
+      "position": 65,
+      "id": 65,
+      "name": "r_verb_real",
+      "help": "Pour un verbe, celui qui réalise l'action (par dérivation morphologique). Par exemple, chasser -> chasseur, naviguer -> navigateur."
+    },
+    {
+      "position": 66,
+      "id": 66,
+      "name": "r_chunk_head",
+      "help": ""
+    },
+    {
+      "position": 67,
+      "id": 67,
+      "name": "r_similar",
+      "help": "Similaire/ressemble à ; par exemple le congre est similaire à une anguille, ..."
+    },
+    {
+      "position": 68,
+      "id": 68,
+      "name": "r_set>item",
+      "help": "Quel est l'ELEMENT qui compose l'ENSEMBLE qui suit (par exemple, un essaim est composé d'abeilles)"
+    },
+    {
+      "position": 69,
+      "id": 69,
+      "name": "r_item>set",
+      "help": "Quel est l'ENSEMBLE qui est composé de l'ELEMENT qui suit (par exemple, un essaim est composé d'abeilles)"
+    },
+    {
+      "position": 70,
+      "id": 70,
+      "name": "r_processus>agent",
+      "help": "Quel est l'acteur de ce processus/événement ? Par exemple,  'nettoyage' peut avoir comme acteur 'technicien de surface'."
+    },
+    {
+      "position": 71,
+      "id": 71,
+      "name": "r_variante",
+      "help": "Variantes du termes cible. Par exemple, yaourt, yahourt, ou encore évènement, événement."
+    },
+    {
+      "position": 72,
+      "id": 72,
+      "name": "r_syn_strict",
+      "help": "Termes strictement substituables, pour des termes hors du domaine général, et pour la plupart des noms (exemple : endométriose intra-utérine --> adénomyose)"
+    },
+    {
+      "position": 73,
+      "id": 73,
+      "name": "r_is_smaller_than",
+      "help": "Qu'est-ce qui est physiquement plus gros que... (la comparaison doit être pertinente)"
+    },
+    {
+      "position": 74,
+      "id": 74,
+      "name": "r_is_bigger_than",
+      "help": "Qu'est-ce qui est physiquement moins gros que... (la comparaison doit être pertinente)"
+    },
+    {
+      "position": 75,
+      "id": 75,
+      "name": "r_accomp",
+      "help": "Est souvent accompagné de, se trouve avec... Par exemple : Astérix et Obelix, le pain et le fromage, les fraises et la chantilly."
+    },
+    {
+      "position": 76,
+      "id": 76,
+      "name": "r_processus>patient",
+      "help": "Quel est le patient de ce processus/événement ? Par exemple,  'découpe' peut avoir comme patient 'viande'."
+    },
+    {
+      "position": 77,
+      "id": 77,
+      "name": "r_verb_ppas",
+      "help": "Le participe passé (au masculin singulier) du verbe infinitif. Par exemple, pour manger => mangé"
+    },
+    {
+      "position": 78,
+      "id": 78,
+      "name": "r_cohypo",
+      "help": "Il est demandé d'énumérer les CO-HYPONYMES du terme. Par exemple, 'chat' et 'tigre' sont des co-hyponymes (de 'félin')."
+    },
+    {
+      "position": 79,
+      "id": 79,
+      "name": "r_verb_ppre",
+      "help": "Le participe présent(au masculin singulier) du verbe infinitif. Par exemple, pour manger => mangeant"
+    },
+    {
+      "position": 80,
+      "id": 99,
+      "name": "r_der_morpho",
+      "help": "Des termes dériviés morphologiquement sont demandés). Par exemple, pour 'lait' on pourrait mettre 'laitier', 'laitage', 'laiterie', etc. (mais pas 'lactose'). Pour 'jardin', on mettra 'jardinier', 'jardinage', 'jardiner', etc. "
+    },
+    {
+      "position": 81,
+      "id": 100,
+      "name": "r_has_auteur",
+      "help": "Quel est l'auteur de l'oeuvre suivante ?"
+    },
+    {
+      "position": 82,
+      "id": 101,
+      "name": "r_has_personnage",
+      "help": "Quels sont les personnages présents dans l'oeuvre qui suit ?"
+    },
+    {
+      "position": 83,
+      "id": 102,
+      "name": "r_can_eat",
+      "help": "De quoi peut se nourir l'animal suivant ?"
+    },
+    {
+      "position": 84,
+      "id": 103,
+      "name": "r_has_actors",
+      "help": "A comme acteurs (pour un film ou similaire)."
+    },
+    {
+      "position": 85,
+      "id": 104,
+      "name": "r_deplac_mode",
+      "help": "Mode de déplacement"
+    },
+    {
+      "position": 86,
+      "id": 105,
+      "name": "r_has_interpret",
+      "help": "Interprète de personnages (cinéma ou théâtre)"
+    },
+    {
+      "position": 87,
+      "id": 106,
+      "name": "r_color",
+      "help": "A comme couleur(s)..."
+    },
+    {
+      "position": 88,
+      "id": 107,
+      "name": "r_cible",
+      "help": "Cible de la maladie : myxomatose => lapin, rougeole => enfant, ..."
+    },
+    {
+      "position": 89,
+      "id": 108,
+      "name": "r_symptomes",
+      "help": "Symptomes de la maladie : myxomatose => yeux rouges, rougeole => boutons, ..."
+    },
+    {
+      "position": 90,
+      "id": 109,
+      "name": "r_predecesseur-time",
+      "help": "Qu'est ce qui peut PRECEDER temporellement (par exemple -  inverse de successeur) le terme suivant :"
+    },
+    {
+      "position": 91,
+      "id": 110,
+      "name": "r_diagnostique",
+      "help": "Diagnostique pour la maladie : diabète => prise de sang, rougeole => examen clinique, ..."
+    },
+    {
+      "position": 92,
+      "id": 111,
+      "name": "r_predecesseur-space",
+      "help": "Qu'est ce qui peut PRECEDER spatialement (par exemple -  inverse de successeur spatial) le terme suivant :"
+    },
+    {
+      "position": 93,
+      "id": 112,
+      "name": "r_successeur-space",
+      "help": "Qu'est ce qui peut SUIVRE spatialement (par exemple Locomotive à vapeur -> tender, wagon etc.) le terme suivant :"
+    },
+    {
+      "position": 94,
+      "id": 113,
+      "name": "r_social_tie",
+      "help": "Relation sociale/familliale entre les individus... (annotation pour la nature exacte : frère, mari, etc.)"
+    },
+    {
+      "position": 95,
+      "id": 114,
+      "name": "r_tributary",
+      "help": "Tributaire de (physique ou spatial)."
+    },
+    {
+      "position": 96,
+      "id": 115,
+      "name": "r_sentiment-1",
+      "help": "Pour un SENTIMENT ou EMOTION donné, il est demandé d’énumérer les termes que vous pourriez associer. Par exemple, pour 'joie', on aurait 'cadeau', 'naissance', 'bonne nouvelle', etc."
+    },
+    {
+      "position": 97,
+      "id": 116,
+      "name": "r_linked-with",
+      "help": "A quoi est-ce relié (un wagon est relié à un autre wagon ou à une locomotive) ?"
+    },
+    {
+      "position": 98,
+      "id": 117,
+      "name": "r_foncteur",
+      "help": "La fonction de ce terme par rapport à d'autres. Pour les prépositions notamment, 'chez' => relation r_location. (demande un type de relation comme valeur)"
+    },
+    {
+      "position": 99,
+      "id": 118,
+      "name": "r_comparison",
+      "help": ""
+    },
+    {
+      "position": 100,
+      "id": 119,
+      "name": "r_but",
+      "help": "But de l'action"
+    },
+    {
+      "position": 101,
+      "id": 120,
+      "name": "r_but-1",
+      "help": "Quel sont les action ou verbe qui le terme cible comme but ?"
+    },
+    {
+      "position": 102,
+      "id": 121,
+      "name": "r_own",
+      "help": "Que POSSEDE le terme suivant ? (un soldat possède un fusil, une cavalière des bottes, ...  soldat r_own fusil, ...)"
+    },
+    {
+      "position": 103,
+      "id": 122,
+      "name": "r_own-1",
+      "help": "Par qui ou quoi EST POSSEDE le terme suivant ? (par exemple, fusil r_own-1 soldat)"
+    },
+    {
+      "position": 104,
+      "id": 123,
+      "name": "r_verb_aux",
+      "help": "Auxiliaire utilisé pour ce verbe"
+    },
+    {
+      "position": 105,
+      "id": 124,
+      "name": "r_predecesseur-logic",
+      "help": "Qu'est ce qui peut PRECEDER logiquement (par exemple : A précède B -  inverse de successeur logique) le terme suivant :"
+    },
+    {
+      "position": 106,
+      "id": 125,
+      "name": "r_successeur-logic",
+      "help": "Qu'est ce qui peut SUIVRE logiquement (par exemple A -> B, C etc.) le terme suivant :"
+    },
+    {
+      "position": 107,
+      "id": 126,
+      "name": "r_isa-incompatible",
+      "help": "Relation d'incompatibilité pour les génériques. Si A r_isa-incompatible B alors X ne peut pas être à la fois A et B ou alors X est polysémique. Par exemple, poisson r_isa-incompatible oiseau. Colin est à la fois un oiseau et un poisson, donc colin est polysémique."
+    },
+    {
+      "position": 108,
+      "id": 127,
+      "name": "r_incompatible",
+      "help": "Relation d'incompatibilité, ne doivent pas être présents ensemble. Par exemple, alcool r_incompatible antibiotique."
+    },
+    {
+      "position": 109,
+      "id": 128,
+      "name": "r_node2relnode",
+      "help": "Relation entre un noeud (quelconque) et un noeud de relation (type = 10) - permet de rendre le graphe connexe même avec les annotations de relations"
+    },
+    {
+      "position": 110,
+      "id": 129,
+      "name": "r_require",
+      "help": "Il est demandé d'énumérer les termes nécessaires au mot mot cible... Par exemple, 'se reposer' => 'calme', ou 'pain' => 'farine'."
+    },
+    {
+      "position": 111,
+      "id": 130,
+      "name": "r_is_instance_of",
+      "help": "Une instance est un individu particulier. Il s'agit d'une entité nommée (personne, lieu, organisation, etc) - par exemple, 'Jolly Jumper' est une instance de 'cheval', 'Titanic' en est une de 'transatlantique'."
+    },
+    {
+      "position": 112,
+      "id": 131,
+      "name": "r_is_concerned_by",
+      "help": "A peut être concerné par B. Par exemple, une personne a un rendez-vous a une maladie, une idée, une opinion, etc..."
+    },
+    {
+      "position": 113,
+      "id": 132,
+      "name": "r_symptomes-1",
+      "help": "Inverse de symptômes de la maladie : myxomatose => yeux rouges, rougeole => boutons, ..."
+    },
+    {
+      "position": 114,
+      "id": 149,
+      "name": "r_compl_agent",
+      "help": "Le complément d'agent est celui qui effectue l'action dans les formes passives. Par exemple, pour 'être mangé', la souris est l'agent et le chat le complément d'agent."
+    },
+    {
+      "position": 115,
+      "id": 150,
+      "name": "r_beneficiaire",
+      "help": "Le bénéficiaire est l'entité qui tire bénéfice/préjudice de l'action (un complément d'objet indirect introduit par 'à', 'pour', ...). Par exemple dans - La sorcière donne une pomme à Blanche Neige -, la bénéficiaire est Blanche Neige ... enfin, bref, vous avez compris l'idée."
+    },
+    {
+      "position": 116,
+      "id": 151,
+      "name": "r_descend_de",
+      "help": "Descend de (évolution)..."
+    },
+    {
+      "position": 117,
+      "id": 152,
+      "name": "r_domain_subst",
+      "help": "Quels sont le ou les domaines de substitution pour ce terme quand il est utilisé comme domaine (par exemple, 'muscle' => 'anatomie du système musculaire')"
+    },
+    {
+      "position": 118,
+      "id": 153,
+      "name": "r_prop",
+      "help": "Pour le terme donné, il faut indiquer les noms de propriétés pertinents (par exemple pour 'voiture', le 'prix', la 'puissance', la 'longueur', le 'poids',etc. On ne met que des noms et pas des adjectifs)."
+    },
+    {
+      "position": 119,
+      "id": 154,
+      "name": "r_activ_voice",
+      "help": "Pour un verbe à la voix passive, sa voix active. Par exemple, pour 'être mangé' on aura 'manger'."
+    },
+    {
+      "position": 120,
+      "id": 155,
+      "name": "r_make_use_of",
+      "help": "Peut utiliser un objet ou produit (par exemple électricité pour frigo)."
+    },
+    {
+      "position": 121,
+      "id": 156,
+      "name": "r_is_used_by",
+      "help": "Est utilisé par (par exemple essence pour voiture)."
+    },
+    {
+      "position": 122,
+      "id": 157,
+      "name": "r_adj-nomprop",
+      "help": "Pour un adjectif, donner le nom de propriété correspondant. Par exemple, pour 'friable' -> 'friabilité'"
+    },
+    {
+      "position": 123,
+      "id": 158,
+      "name": "r_nomprop-adj",
+      "help": "Pour un nom de propriété, donner l'adjectif correspondant. Par exemple, pour 'friabilité' -> 'friable'"
+    },
+    {
+      "position": 124,
+      "id": 159,
+      "name": "r_adj-adv",
+      "help": "Pour un adjectif, donner l'adverbe correspondant. Par exemple, pour 'rapide' -> 'rapidement'"
+    },
+    {
+      "position": 125,
+      "id": 160,
+      "name": "r_adv-adj",
+      "help": "Pour un adverbe, donner l'adjectif correspondant. Par exemple, pour 'rapidement' -> 'rapide'"
+    },
+    {
+      "position": 126,
+      "id": 161,
+      "name": "r_homophone",
+      "help": "Il est demandé d'énumérer les homophones ou quasi-homophones de ce terme."
+    },
+    {
+      "position": 127,
+      "id": 162,
+      "name": "r_potential_confusion",
+      "help": "Confusion potentielle avec un autre terme (par exemple, acre et âcre, détonner et détoner)."
+    },
+    {
+      "position": 128,
+      "id": 163,
+      "name": "r_concerning",
+      "help": "Qui concerne quelque chose ou quelqu'un. Par exemple: maladie r_concerning personne, ou disparition r_concerning emploi. (inverse de r_is_concerned_by)"
+    },
+    {
+      "position": 129,
+      "id": 164,
+      "name": "r_adj>nom",
+      "help": "Le nom associé à l'adjectif. Par exemple, 'urinaire' -> 'urine'"
+    },
+    {
+      "position": 130,
+      "id": 165,
+      "name": "r_nom>adj",
+      "help": "L'adjectif associé au nom. Par exemple, 'urine' -> 'urinaire' "
+    },
+    {
+      "position": 131,
+      "id": 333,
+      "name": "r_translation",
+      "help": "Traduction vers une autre langue."
+    },
+    {
+      "position": 132,
+      "id": 444,
+      "name": "r_link",
+      "help": "Lien vers une ressource externe (WordNet, RadLex, UMLS, Wikipedia, etc...)"
+    },
+    {
+      "position": 133,
+      "id": 555,
+      "name": "r_cooccurrence",
+      "help": "co-occurences (non utilisée)"
+    },
+    {
+      "position": 134,
+      "id": 666,
+      "name": "r_aki",
+      "help": "(TOTAKI) equivalent pour TOTAKI de l'association libre"
+    },
+    {
+      "position": 135,
+      "id": 777,
+      "name": "r_wiki",
+      "help": "Associations issues de wikipedia..."
+    },
+    {
+      "position": 136,
+      "id": 997,
+      "name": "r_annotation_exception",
+      "help": ""
+    },
+    {
+      "position": 137,
+      "id": 998,
+      "name": "r_annotation",
+      "help": ""
+    },
+    {
+      "position": 138,
+      "id": 999,
+      "name": "r_inhib",
+      "help": "relation d'inhibition, le terme inhibe les termes suivants... ce terme a tendance à exclure le terme associé."
+    },
+    {
+      "position": 139,
+      "id": 1000,
+      "name": "r_prev",
+      "help": "(interne)"
+    },
+    {
+      "position": 140,
+      "id": 1001,
+      "name": "r_succ",
+      "help": "(interne)"
+    },
+    {
+      "position": 141,
+      "id": 1002,
+      "name": "r_termgroup",
+      "help": ""
+    },
+    {
+      "position": 142,
+      "id": 2000,
+      "name": "r_raff_sem-1",
+      "help": ""
+    },
+    {
+      "position": 143,
+      "id": 2001,
+      "name": "r_learning_model",
+      "help": ""
+    }
+  ]
+}
+]

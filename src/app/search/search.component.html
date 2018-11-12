@@ -14,8 +14,8 @@
           <input class="form-control" matInput [value]="name" (keyup.enter)="onEnter($event)" formControlName="relationGroup" type="text"  placeholder="Relation"  [matAutocomplete]="autoGroup">
           <mat-autocomplete  #autoGroup="matAutocomplete">
             <mat-optgroup *ngFor="let group of relationGroupOptions | async" [label]="group.letter">
-              <mat-option  matTooltip="Info about the action Info about the action "  matTooltipPosition="after" (onSelectionChange)="onEnter($event)" (keyup.enter)="onEnter($event)" *ngFor="let name of group.names" [value]="name">
-                {{name}}
+              <mat-option  [matTooltip]=relation.help  matTooltipPosition="after" (onSelectionChange)="onEnter($event)" (keyup.enter)="onEnter($event)" *ngFor="let relation of group.relations" [value]="relation.name">
+                {{relation.name}}
               </mat-option>
             </mat-optgroup>
           </mat-autocomplete>
@@ -27,7 +27,7 @@
         <mat-form-field class="relation-chip-list">
           <mat-chip-list #chipList>
             <mat-chip *ngFor="let relation of choosenRelations" [selectable]="selectable" [removable]="removable" (removed)="remove(relation)">
-              {{relation}}
+              {{relation.name}}
               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip> 
           <input readonly
