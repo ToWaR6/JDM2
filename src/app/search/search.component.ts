@@ -43,7 +43,14 @@ export class SearchComponent implements OnInit {
   constructor(private fb: FormBuilder,private http:HttpClient) {
     this.getJSON().subscribe(data => {
       this.relationGroups = data;
-      this.ngOnInit();
+      this.relationGroups.map(item=>item.relations.sort(FrenchOrderPipe.alphabeticalOrder));
+      this.relationGroupOptions = this.searchForm.get('relationGroup')!.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterGroup(value)
+        .filter(group => group.relations.length > 0)
+        )
+      );
     });
   }
 
@@ -51,18 +58,7 @@ export class SearchComponent implements OnInit {
   public getJSON(): Observable<any> {
     return this.http.get("./assets/relations.json")
   }
-  ngOnInit() {
-    if(this.relationGroups.length > 0){
-      this.relationGroups.map(item=>item.relations.sort(FrenchOrderPipe.alphabeticalOrder));
-      this.relationGroupOptions = this.searchForm.get('relationGroup')!.valueChanges
-      .pipe(
-        startWith(),
-        map(value => this._filterGroup(value)
-        .filter(group => group.relations.length > 0)
-        )
-      );
-    }
-  }
+  ngOnInit() { }
   
     private _filterGroup(value: string): relationGroup[] {
       if (value) {
