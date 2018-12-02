@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
   });
   results  = new Array<Relation>();
   relationGroups: relationGroup[] =[];
-
+  word:string; //NgModel de l'input
 
   choosenRelations :IRelation[] = [];
   relationGroupOptions: Observable<relationGroup[]>;
@@ -113,20 +113,13 @@ export class SearchComponent implements OnInit {
 
     onSubmit(){
       this.isSearching = true;
-      this.results = [
-        {
-          name :"is_a",
-          words: [
-            {term:"chien",weight:1},
-            {term :"chat",weight:0.0243}
-          ]
-        },{
-          name :"is_not",
-          words: [
-            {term:"oiseau",weight:1},
-            {term :"humain",weight:1}
-          ]
-        }
-      ];
+      this.results = [];
+      for(let relation of this.choosenRelations){
+        this.results.push({
+          "name" : relation.name,
+          "word" : this.word,
+          words : []
+        });
+      }
     }
 }

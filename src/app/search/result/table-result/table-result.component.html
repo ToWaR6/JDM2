@@ -10,13 +10,13 @@
     <!-- Term Column -->
     <ng-container matColumnDef="term">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Term </th>
-      <td mat-cell *matCellDef="let word"> {{word.term}} </td>
+      <td mat-cell *matCellDef="let word"> {{word.noeud.motFormate}} </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="weight">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Poid </th>
-      <td mat-cell *matCellDef="let word"> {{word.weight}} </td>
+      <td mat-cell *matCellDef="let word"> {{word.noeud.poids}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
