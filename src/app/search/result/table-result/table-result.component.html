@@ -8,15 +8,15 @@
     </ng-container>
 
     <!-- Term Column -->
-    <ng-container matColumnDef="term">
+    <ng-container matColumnDef="noeud.motFormate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Term </th>
       <td mat-cell *matCellDef="let word"> {{word.noeud.motFormate}} </td>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
+    <ng-container matColumnDef="poids">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Poid </th>
-      <td mat-cell *matCellDef="let word"> {{word.noeud.poids}} </td>
+      <td mat-cell *matCellDef="let word"> {{word.poids}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

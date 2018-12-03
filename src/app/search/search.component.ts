@@ -31,11 +31,10 @@ export class SearchComponent implements OnInit {
   removable = true;
   isSearching = false;
   searchForm: FormGroup = this.fb.group({
-    relationGroup: '',
+    relationGroup: ''
   });
   results  = new Array<Relation>();
   relationGroups: relationGroup[] =[];
-  word:string; //NgModel de l'input
 
   choosenRelations :IRelation[] = [];
   relationGroupOptions: Observable<relationGroup[]>;
@@ -110,16 +109,18 @@ export class SearchComponent implements OnInit {
         }
       }
     }
-
+    wordToSearch :string;
     onSubmit(){
-      this.isSearching = true;
-      this.results = [];
-      for(let relation of this.choosenRelations){
-        this.results.push({
-          "name" : relation.name,
-          "word" : this.word,
-          words : []
-        });
+      if(this.wordToSearch.trim().length>0 && this.choosenRelations.length>0 )
+        this.isSearching = true;
+        this.results = [];
+        for(let relation of this.choosenRelations){
+          this.results.push({
+            "name" : relation.name,
+            "word" : this.wordToSearch,
+            words : []
+          });
+        }
       }
     }
 }

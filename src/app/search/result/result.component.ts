@@ -34,6 +34,7 @@ export class ResultComponent implements OnInit,OnChanges {
   }
 
   public getJson(word, relationName): Observable<any>{
-    return this.http.get("https://jdm2-server.herokuapp.com/diko/relation?mot="+word+"&relation=r_"+relationName);
+    let url = "https://jdm2-server.herokuapp.com/diko/relation?mot="+word+"&relation=r_"+relationName;
+    return this.http.get(url);
   }
 }

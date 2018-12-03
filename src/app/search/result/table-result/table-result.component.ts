@@ -9,7 +9,7 @@ import {Word} from '../../relation'
 })
 export class TableResultComponent implements OnInit, OnChanges{
   @Input() dataSourceInput: MatTableDataSource<Word>;
-  displayedColumns: string[] = ['position', 'term', 'weight'];
+  displayedColumns: string[] = ['position', 'noeud.motFormate', 'poids'];
   @ViewChild(MatPaginator) paginator : MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor() { }
@@ -17,7 +17,13 @@ export class TableResultComponent implements OnInit, OnChanges{
   ngOnInit() {
   }
   ngOnChanges(changes: SimpleChanges){
-    console.log(this.sort);
+    this.dataSourceInput.sortingDataAccessor = (item, property) => {
+      switch(property) {
+        case("noeud.motFormate") :
+          return item.noeud.motFormate.toLowerCase();
+        default: return item[property];
+      }
+    };
     this.dataSourceInput.sort = this.sort;
     this.dataSourceInput.paginator = this.paginator;
   }
