@@ -20,7 +20,8 @@ export class TableResultComponent implements OnInit, OnChanges{
     this.dataSourceInput.sortingDataAccessor = (item, property) => {
       switch(property) {
         case("noeud.motFormate") :
-          return item.noeud.motFormate.toLowerCase();
+          console.log(item.noeud.motFormate.toLocaleLowerCase());
+          return item.noeud.motFormate.toLocaleLowerCase();
         default: return item[property];
       }
     };
