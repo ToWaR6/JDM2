@@ -1,20 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {startWith, map} from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 import { FrenchOrderPipe } from '../french-order.pipe';
-import {Relation} from './relation';
+import { Relation } from './relation';
 import { HttpClient } from '@angular/common/http';
 
 export interface relationGroup {
-  letter:string;
-  relations:IRelation[];
+  letter: string;
+  relations: IRelation[];
 }
-export interface IRelation{
-  id:number;
-  position:number;
-  name:string;
-  help:string;
+export interface IRelation {
+  id: number;
+  position: number;
+  name: string;
+  help: string;
 }
 
 export const _filter = (opt: IRelation[], value: string): IRelation[] => {
@@ -26,102 +26,115 @@ export const _filter = (opt: IRelation[], value: string): IRelation[] => {
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
   selectable = true;
   removable = true;
   isSearching = false;
   searchForm: FormGroup = this.fb.group({
     relationGroup: ''
   });
-  results  = new Array<Relation>();
-  relationGroups: relationGroup[] =[];
+  results = new Array<Relation>();
+  relationGroups: relationGroup[] = [];
 
-  choosenRelations :IRelation[] = [];
+  choosenRelations: IRelation[] = [];
   relationGroupOptions: Observable<relationGroup[]>;
-    
-  constructor(private fb: FormBuilder,private http:HttpClient) {
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.getJSON().subscribe(data => {
       this.relationGroups = data;
-      this.relationGroups.map(item=>item.relations.sort(FrenchOrderPipe.alphabeticalOrder));
+      this.relationGroups.map(item => item.relations.sort(FrenchOrderPipe.alphabeticalOrder));
       this.relationGroupOptions = this.searchForm.get('relationGroup')!.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filterGroup(value)
-        .filter(group => group.relations.length > 0)
-        )
-      );
+        .pipe(
+          startWith(''),
+          map(value => this._filterGroup(value)
+            .filter(group => group.relations.length > 0)
+          )
+        );
     });
   }
 
 
   public getJSON(): Observable<any> {
-    return this.http.get("./assets/relations.json")
+    return this.http.get("./assets/relations.json");
   }
-  ngOnInit() { }
-  
-    private _filterGroup(value: string): relationGroup[] {
-      if (value) {
-        return this.relationGroups
-          .map(group => ({letter: group.letter, relations: _filter(group.relations, value)}))
-          .filter(group => group.relations.length > 0);
-      }
-      return this.relationGroups;
+  private _filterGroup(value: string): relationGroup[] {
+    if (value) {
+      return this.relationGroups
+        .map(group => ({ letter: group.letter, relations: _filter(group.relations, value) }))
+        .filter(group => group.relations.length > 0);
     }
+    return this.relationGroups;
+  }
 
-    onEnter(event : any){
-      let value;
-      if(event.source != undefined) { //Si c'est mat-option
-        value = this._getRelationFromName(event.source.value);
-        event.source.value = "";
-      }else{ //Si c'est un input classique
-        value = this._getRelationFromName(event.explicitOriginalTarget.value);
-        event.explicitOriginalTarget.value ="";
-      }
-      for(let relationGroup of this.relationGroups){
-        for(let relation of relationGroup.relations){
-          let found = relationGroup.relations.indexOf(value);
-          if(found != -1){
-            this.choosenRelations.push(value);
-            relationGroup.relations.splice(found,1);
-          }
+  onEnter(event: any) {
+    let value;
+    if (event.source != undefined) { //Si c'est mat-option
+      value = this._getRelationFromName(event.source.value);
+      event.source.value = "";
+    } else { //Si c'est un input classique
+      value = this._getRelationFromName(event.explicitOriginalTarget.value);
+      event.explicitOriginalTarget.value = "";
+    }
+    for (let relationGroup of this.relationGroups) {
+      for (let relation of relationGroup.relations) {
+        let found = relationGroup.relations.indexOf(value);
+        if (found != -1) {
+          this.choosenRelations.push(value);
+          relationGroup.relations.splice(found, 1);
         }
       }
     }
-    _getRelationFromName(name:string){
-      for(let relations of this.relationGroups){
-        for(let relation of relations.relations){
-          if(relation.name==name)
-            return relation;
-        }
-      }
-      return name;
-    }
-    remove(relation :IRelation){
-      const index = this.choosenRelations.indexOf(relation);
-      if(index >=0){
-        this.choosenRelations.splice(index,1);
-        for(let relationBrowsed of this.relationGroups){
-          if(relation.name[0].toUpperCase()===relationBrowsed.letter){
-            relationBrowsed.relations.push(relation); 
-            relationBrowsed.relations.sort(FrenchOrderPipe.alphabeticalOrder);
-            break;
-          }
-        }
+  }
+  _getRelationFromName(name: string) {
+    for (let relations of this.relationGroups) {
+      for (let relation of relations.relations) {
+        if (relation.name == name)
+          return relation;
       }
     }
-    wordToSearch :string;
-    onSubmit(){
-      if(this.wordToSearch.trim().length>0 && this.choosenRelations.length>0 )
-        this.isSearching = true;
-        this.results = [];
-        for(let relation of this.choosenRelations){
-          this.results.push({
-            "name" : relation.name,
-            "word" : this.wordToSearch,
-            words : []
-          });
+    return name;
+  }
+  remove(relation: IRelation) {
+    const index = this.choosenRelations.indexOf(relation);
+    if (index >= 0) {
+      this.choosenRelations.splice(index, 1);
+      for (let relationBrowsed of this.relationGroups) {
+        if (relation.name[0].toUpperCase() === relationBrowsed.letter) {
+          relationBrowsed.relations.push(relation);
+          relationBrowsed.relations.sort(FrenchOrderPipe.alphabeticalOrder);
+          break;
         }
       }
     }
+  }
+  wordToSearch: string;
+  definition:string;
+  longDef : string;
+  onSubmit() {
+    if (this.wordToSearch.trim().length > 0 && this.choosenRelations.length > 0)
+      this.isSearching = true;
+    this.results = [];
+    this.getDefinition(this.wordToSearch).subscribe(data=>{
+    
+      this.definition = data['definition'];
+      // if(this.definition.length >150){
+      //   this.longDef = this.definition;
+      //   this.definition = this.definition.substring(0,150) + "...";
+      // }
+    })
+    for (let relation of this.choosenRelations) {
+      this.results.push({
+        "name": relation.name,
+        "word": this.wordToSearch,
+        words: []
+      });
+    }
+  }
+
+
+
+  public getDefinition(word): Observable<any>{
+    let url = "https://jdm2-server.herokuapp.com/diko?mot="+word;
+    return this.http.get(url);
   }
 }

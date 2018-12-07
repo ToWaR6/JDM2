@@ -1,42 +1,52 @@
-<div [ngClass]="!isSearching ? 'container':'navbar-expand-lg navbar-light bg-light'">
-    <div *ngIf="!isSearching" class='row justify-content-center align-items-center' style="padding-left: 0px;  padding-right: 0px;">
-        <img class ="img-fluid" [ngClass]="!isSearching? '' :'small-img'"alt="Angular Logo" src="../assets/drawable/logo.png">
+<div class="container-fluid">
+  <div [ngClass]="isSearching?'row ':'col'">
+    <div [ngClass]="isSearching?'col-md-2':' row justify-content-center align-items-center'">
+      <img alt="Angular Logo" [ngClass]="isSearching?'small-img':'img-fluid '" src="../assets/drawable/logo.png">
     </div>
-    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" >
-        <img *ngIf="isSearching" class ="img-fluid" [ngClass]="!isSearching? '' :'small-img'"alt="Angular Logo" src="../assets/drawable/logo.png">
-        <div [ngClass]="!isSearching ? 'row justify-content-center align-items-center' : 'd-inline-block'">
-        <!--Ici on rentre le mot recherché-->
-        <mat-form-field class="form-group">
-          <input matInput class="form-control" type="text"  placeholder="Mot recherché" [(ngModel)]="wordToSearch" [ngModelOptions]="{standalone: true}" required>
-        </mat-form-field>
-        <!--Autocomplete ici on choisi son option de recherche is_a, etc-->
-        <mat-form-field class="form-group">
-          <input class="form-control" matInput [value]="name" (keyup.enter)="onEnter($event)" formControlName="relationGroup" type="text"  placeholder="Relation"  [matAutocomplete]="autoGroup">
-          <mat-autocomplete  #autoGroup="matAutocomplete">
-            <mat-optgroup *ngFor="let group of relationGroupOptions | async" [label]="group.letter">
-              <mat-option  [matTooltip]=relation.help  matTooltipPosition="after" (onSelectionChange)="onEnter($event)" (keyup.enter)="onEnter($event)" *ngFor="let relation of group.relations" [value]="relation.name">
-                {{relation.name}}
-              </mat-option>
-            </mat-optgroup>
-          </mat-autocomplete>
-        </mat-form-field>
-        <!--Bouton de validation-->
-        <button  class="form-control" type="submit" mat-raised-button>Rechercher</button>
-      </div>
-      <div *ngIf="choosenRelations.length>0" [ngClass]="!isSearching ? 'row justify-content-center align-items-center' : ''">
-        <mat-form-field class="relation-chip-list">
-          <mat-chip-list #chipList>
-            <mat-chip *ngFor="let relation of choosenRelations" [selectable]="selectable" [removable]="removable" (removed)="remove(relation)">
-              {{relation.name}}
-              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-            </mat-chip> 
-          <input readonly
-          placeholder="Mes Relations..."
-          [matChipInputFor]="chipList">
-        </mat-chip-list>
-      </mat-form-field>
+    <div [ngClass]="isSearching?'col-md-6':''">
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <!--Ici on rentre le mot recherché-->
+          <mat-form-field class="form-group col-md-5">
+            <input matInput class="form-control" type="text" placeholder="Mot recherché" [(ngModel)]="wordToSearch"
+              [ngModelOptions]="{standalone: true}" required>
+          </mat-form-field>
+          <!--Autocomplete ici on choisi son option de recherche is_a, etc-->
+          <mat-form-field class="form-group col-md-5">
+            <input class="form-control" matInput [value]="name" (keyup.enter)="onEnter($event)" formControlName="relationGroup"
+              type="text" placeholder="Relation" [matAutocomplete]="autoGroup">
+            <mat-autocomplete #autoGroup="matAutocomplete">
+              <mat-optgroup *ngFor="let group of relationGroupOptions | async" [label]="group.letter">
+                <mat-option [matTooltip]=relation.help matTooltipPosition="after" (onSelectionChange)="onEnter($event)"
+                  (keyup.enter)="onEnter($event)" *ngFor="let relation of group.relations" [value]="relation.name">
+                  {{relation.name}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-autocomplete>
+          </mat-form-field>
+          <!--Bouton de validation-->
+          <button class="form-control col-md-2" type="submit" mat-raised-button>Rechercher</button>
+        </div>
+        <div class="row">
+          <div *ngIf="choosenRelations.length>0" class="col-md-12">
+            <mat-form-field class="relation-chip-list">
+              <mat-chip-list #chipList>
+                <mat-chip *ngFor="let relation of choosenRelations" [selectable]="selectable" [removable]="removable"
+                  (removed)="remove(relation)">
+                  {{relation.name}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input readonly placeholder="Mes Relations..." [matChipInputFor]="chipList">
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
     </div>
-    </form>
- 
+    <p *ngIf="isSearching" class=" col-md-4 text-justify name">
+      Définition : {{definition}}
+    </p>
+  </div>
+  <app-result *ngIf="isSearching" [relations]="results"></app-result>
+
 </div>
-<app-result *ngIf="isSearching" [relations]="results"></app-result>
