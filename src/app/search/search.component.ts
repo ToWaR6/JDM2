@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { Observable, EMPTY, of } from 'rxjs';
+import { switchMap, debounceTime, startWith, map, tap, finalize } from 'rxjs/operators';
 import { FrenchOrderPipe } from '../french-order.pipe';
 import { Relation } from './relation';
 import { HttpClient } from '@angular/common/http';
 
+import {RequesterService} from './requester.service';
 export interface relationGroup {
   letter: string;
   relations: IRelation[];
@@ -31,15 +32,17 @@ export class SearchComponent {
   removable = true;
   isSearching = false;
   searchForm: FormGroup = this.fb.group({
-    relationGroup: ''
+    relationGroup: '',
+    searchWordForm:''
   });
   results = new Array<Relation>();
   relationGroups: relationGroup[] = [];
-
   choosenRelations: IRelation[] = [];
+  options: Observable<string[]>;
   relationGroupOptions: Observable<relationGroup[]>;
-
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  definition:string;
+  isLoading=true;
+  constructor(private fb: FormBuilder, private http: HttpClient, private requester: RequesterService) {
     this.getJSON().subscribe(data => {
       this.relationGroups = data;
       this.relationGroups.map(item => item.relations.sort(FrenchOrderPipe.alphabeticalOrder));
@@ -51,6 +54,18 @@ export class SearchComponent {
           )
         );
     });
+  }
+
+  ngAfterViewInit(){
+    this.options = this.searchForm.get('searchWordForm')!.valueChanges
+    .pipe( startWith(null),
+      debounceTime(200),
+      tap(()=>this.isLoading=true),
+      switchMap(value => {
+         return this.requester.getAutocomplete(value).pipe(
+          finalize(()=>this.isLoading=false));
+      }),
+    );    
   }
 
 
@@ -107,34 +122,22 @@ export class SearchComponent {
       }
     }
   }
-  wordToSearch: string;
-  definition:string;
-  longDef : string;
+
   onSubmit() {
-    if (this.wordToSearch.trim().length > 0 && this.choosenRelations.length > 0)
+    let wordToSearch = this.searchForm.get('searchWordForm').value;
+    if (wordToSearch.trim().length > 0 && this.choosenRelations.length > 0)
       this.isSearching = true;
     this.results = [];
-    this.getDefinition(this.wordToSearch).subscribe(data=>{
-    
-      this.definition = data['definition'];
-      // if(this.definition.length >150){
-      //   this.longDef = this.definition;
-      //   this.definition = this.definition.substring(0,150) + "...";
-      // }
+    this.requester.getDefinition(wordToSearch).subscribe(data=>{
+      if(data != null)
+        this.definition = data['definition'];
     })
     for (let relation of this.choosenRelations) {
       this.results.push({
         "name": relation.name,
-        "word": this.wordToSearch,
+        "word": wordToSearch,
         words: []
       });
     }
-  }
-
-
-
-  public getDefinition(word): Observable<any>{
-    let url = "https://jdm2-server.herokuapp.com/diko?mot="+word;
-    return this.http.get(url);
   }
 }

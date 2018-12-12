@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div [ngClass]="isSearching?'row ':'col'">
-    <div [ngClass]="isSearching?'col-md-2':' row justify-content-center align-items-center'">
+    <div [ngClass]="isSearching?'col-md-1':' row justify-content-center align-items-center'">
       <img alt="Angular Logo" [ngClass]="isSearching?'small-img':'img-fluid '" src="../assets/drawable/logo.png">
     </div>
     <div [ngClass]="isSearching?'col-md-6':''">
@@ -8,13 +8,15 @@
         <div class="row">
           <!--Ici on rentre le mot recherché-->
           <mat-form-field class="form-group col-md-5">
-            <input matInput class="form-control" type="text" placeholder="Mot recherché" [(ngModel)]="wordToSearch"
-              [ngModelOptions]="{standalone: true}" required>
+            <input matInput class="form-control" [matAutocomplete]="auto" type="text" placeholder="Mot recherché" formControlName="searchWordForm"  autocomplete="off" required>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of options | async" [value]="option">{{option}}</mat-option>
+            </mat-autocomplete>
           </mat-form-field>
           <!--Autocomplete ici on choisi son option de recherche is_a, etc-->
           <mat-form-field class="form-group col-md-5">
             <input class="form-control" matInput [value]="name" (keyup.enter)="onEnter($event)" formControlName="relationGroup"
-              type="text" placeholder="Relation" [matAutocomplete]="autoGroup">
+              type="text" placeholder="Relation" [matAutocomplete]="autoGroup" autocomplete="off">
             <mat-autocomplete #autoGroup="matAutocomplete">
               <mat-optgroup *ngFor="let group of relationGroupOptions | async" [label]="group.letter">
                 <mat-option [matTooltip]=relation.help matTooltipPosition="after" (onSelectionChange)="onEnter($event)"
@@ -43,7 +45,7 @@
         </div>
       </form>
     </div>
-    <p *ngIf="isSearching" class=" col-md-4 text-justify name">
+    <p *ngIf="isSearching" class=" col-md-5 text-justify name">
       Définition : {{definition}}
     </p>
   </div>

@@ -3,6 +3,7 @@ import {MatTableDataSource} from '@angular/material';
 import {Relation,Word} from '../relation'
 import {Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { RequesterService } from '../requester.service';
 
 export class RelationTable{
   name:string;
@@ -19,12 +20,12 @@ export class ResultComponent implements OnInit,OnChanges {
   tabsSources = new Array<RelationTable>(); //array of dataSource for the tables
 
   ngOnInit() {}
-  constructor(private http:HttpClient){}
+  constructor(private requester:RequesterService){}
   ngOnChanges(changes: SimpleChanges){
     this.tabsSources = new Array<RelationTable>();
     for(let relation of this.relations){
       let relationTable = new RelationTable();
-      this.getJson(relation.word,relation.name).subscribe(data => {
+      this.requester.getJson(relation.word,relation.name).subscribe(data => {
         relationTable.dataSource = new MatTableDataSource(data);
       });
       relationTable.dataSource = new MatTableDataSource();
@@ -33,8 +34,5 @@ export class ResultComponent implements OnInit,OnChanges {
     }
   }
 
-  public getJson(word, relationName): Observable<any>{
-    let url = "https://jdm2-server.herokuapp.com/diko/relation?mot="+word+"&relation=r_"+relationName;
-    return this.http.get(url);
-  }
+
 }
