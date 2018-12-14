@@ -129,8 +129,16 @@ export class SearchComponent {
       this.isSearching = true;
     this.results = [];
     this.requester.getDefinition(wordToSearch).subscribe(data=>{
-      if(data != null)
-        this.definition = data['definition'];
+      if(data != null){
+        console.log(data);
+        if(Array.isArray(data)){
+          this.definition = "array";
+        }
+        else{
+          this.definition="string";
+        }
+        // this.definition = data['definition'];
+      }
     })
     for (let relation of this.choosenRelations) {
       this.results.push({

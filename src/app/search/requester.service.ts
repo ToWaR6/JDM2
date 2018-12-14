@@ -10,15 +10,15 @@ export class RequesterService {
   constructor(private http: HttpClient) { }
   
   public getAutocomplete(word): Observable<any>{
-    if(word != null && word.length >0){
+    if(word != null && word.length > 0){
       return this.http.get(this.url+ "/word?begin="+word);
     }
     return EMPTY;
   }
 
   public getDefinition(word): Observable<any>{
-    if(word != null && word.length >0){
-      return this.http.get(this.url+"?mot="+word);
+    if(word != null && word.length > 0){
+      return this.http.get(this.url+"/definition?mot="+word);
     }
     return EMPTY;
   }
