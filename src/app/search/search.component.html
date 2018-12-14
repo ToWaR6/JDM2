@@ -15,7 +15,7 @@
           </mat-form-field>
           <!--Autocomplete ici on choisi son option de recherche is_a, etc-->
           <mat-form-field class="form-group col-md-5">
-            <input class="form-control" matInput [value]="name" (keyup.enter)="onEnter($event)" formControlName="relationGroup"
+            <input class="form-control" matInput (keyup.enter)="onEnter($event)" formControlName="relationGroup"
               type="text" placeholder="Relation" [matAutocomplete]="autoGroup" autocomplete="off">
             <mat-autocomplete #autoGroup="matAutocomplete">
               <mat-optgroup *ngFor="let group of relationGroupOptions | async" [label]="group.letter">
