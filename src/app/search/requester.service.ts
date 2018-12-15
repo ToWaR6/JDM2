@@ -18,7 +18,7 @@ export class RequesterService {
 
   public getDefinition(word): Observable<any>{
     if(word != null && word.length > 0){
-      return this.http.get(this.url+"/definition?mot="+word);
+      return this.http.get(this.url+"?mot="+word);
     }
     return EMPTY;
   }

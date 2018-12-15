@@ -130,14 +130,7 @@ export class SearchComponent {
     this.results = [];
     this.requester.getDefinition(wordToSearch).subscribe(data=>{
       if(data != null){
-        console.log(data);
-        if(Array.isArray(data)){
-          this.definition = "array";
-        }
-        else{
-          this.definition="string";
-        }
-        // this.definition = data['definition'];
+        this.definition = data['definition'];
       }
     })
     for (let relation of this.choosenRelations) {
