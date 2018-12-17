@@ -130,7 +130,15 @@ export class SearchComponent {
     this.results = [];
     this.requester.getDefinition(wordToSearch).subscribe(data=>{
       if(data != null){
-        this.definition = data['definition'];
+       if(data['exist']){
+         this.definition = "Définition : " + data['value'];
+       }else{
+         this.definition = "Pour obtenir une définition essayé avec : ";
+         this.definition += data['value'].map(item => item.noeud.motFormate).join(', ');
+         this.definition += ""
+       }
+      }else{
+        this.definition = "Désolé, ce mot n'existe pas."
       }
     })
     for (let relation of this.choosenRelations) {
