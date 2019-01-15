@@ -42,6 +42,7 @@ export class SearchComponent {
   relationGroupOptions: Observable<relationGroup[]>;
   definition:string;
   isLoading=true;
+  toogle=false;
   constructor(private fb: FormBuilder, private http: HttpClient, private requester: RequesterService) {
     this.getJSON().subscribe(data => {
       this.relationGroups = data;
@@ -122,7 +123,9 @@ export class SearchComponent {
       }
     }
   }
-
+  toogleDef(){
+    this.toogle = !this.toogle;
+  }
   onSubmit() {
     let wordToSearch = this.searchForm.get('searchWordForm').value;
     if (wordToSearch.trim().length > 0 && this.choosenRelations.length > 0)

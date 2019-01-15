@@ -45,8 +45,8 @@
         </div>
       </form>
     </div>
-    <p *ngIf="isSearching" class=" col-md-5 text-justify name">
-      {{definition}}
+    <p *ngIf="isSearching" class=" col-md-5 text-justify def" [ngClass]="toogle? 'def-display':''" (click)="toogleDef()">
+        {{definition}}
     </p>
   </div>
   <app-result *ngIf="isSearching" [relations]="results"></app-result>

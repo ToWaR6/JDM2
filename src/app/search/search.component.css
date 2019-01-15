@@ -9,7 +9,7 @@
     margin-left: 100px;
 }
 
-.name{
+.def{
     line-height: 1em; 
     font-weight: 400;
     text-overflow: ellipsis;
@@ -17,7 +17,7 @@
     overflow:hidden;
     white-space: nowrap;
 }
-.name:active{
+.def-display{
     overflow: visible; 
     white-space: normal;
     height:auto;  /* just added this line */
