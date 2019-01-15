@@ -140,10 +140,9 @@ export class SearchComponent {
       if(data != null){
        if(data['exist']){
          this.definition = "Définition : " + data['value'];
-       }else{
+       }else if(data['exist'] != null){
          this.definition = "Pour obtenir une définition essayez avec : ";
          this.definition += data['value'].map(item => item.noeud.motFormate).join(', ');
-         this.definition += ""
        }
       }else{
         this.definition = "Désolé, ce mot n'existe pas."

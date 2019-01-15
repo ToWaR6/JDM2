@@ -5,7 +5,7 @@
     </div>
     <div [ngClass]="isSearching?'col-md-6':''">
       <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-        <div class="row">
+        <div class="row justify-content-center">
           <!--Ici on rentre le mot recherché-->
           <mat-form-field class="form-group col-md-4">
             <input matInput class="form-control" [matAutocomplete]="auto" type="text" placeholder="Mot recherché" formControlName="searchWordForm"  autocomplete="off" required>
@@ -28,13 +28,13 @@
           </mat-form-field>
           <!--Bouton de validation-->
           
-          <mat-checkbox (change)="viaRelation($event)" ngClass="isSearching?'':'col-md-1'" style="margin-top:20px">Via relations</mat-checkbox>
+          <mat-checkbox (change)="viaRelation($event)" ngClass="isSearching?'':'col-md-1'" style="margin-top:20px;margin-right:10px">Via relations</mat-checkbox>
           <br *ngIf="isSearching">
           <button class="form-control col-md-2" style="margin-bottom:20px" type="submit" mat-raised-button>Rechercher</button>
         </div>
         <div class="row">
           <div *ngIf="choosenRelations.length>0" class="col-md-12">
-            <mat-form-field class="relation-chip-list">
+            <mat-form-field class="relation-chip-list" style="width: 100%" >
               <mat-chip-list #chipList>
                 <mat-chip *ngFor="let relation of choosenRelations" [selectable]="selectable" [removable]="removable"
                   (removed)="remove(relation)">
