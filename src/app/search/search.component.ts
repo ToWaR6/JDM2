@@ -133,7 +133,7 @@ export class SearchComponent {
        if(data['exist']){
          this.definition = "Définition : " + data['value'];
        }else{
-         this.definition = "Pour obtenir une définition essayé avec : ";
+         this.definition = "Pour obtenir une définition essayez avec : ";
          this.definition += data['value'].map(item => item.noeud.motFormate).join(', ');
          this.definition += ""
        }
