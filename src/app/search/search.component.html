@@ -7,7 +7,7 @@
       <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <!--Ici on rentre le mot recherché-->
-          <mat-form-field class="form-group col-md-5">
+          <mat-form-field class="form-group col-md-4">
             <input matInput class="form-control" [matAutocomplete]="auto" type="text" placeholder="Mot recherché" formControlName="searchWordForm"  autocomplete="off" required>
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let option of options | async" [value]="option">{{option}}</mat-option>
@@ -27,7 +27,10 @@
             </mat-autocomplete>
           </mat-form-field>
           <!--Bouton de validation-->
-          <button class="form-control col-md-2" type="submit" mat-raised-button>Rechercher</button>
+          
+          <mat-checkbox (change)="viaRelation($event)" ngClass="isSearching?'':'col-md-1'" style="margin-top:20px">Via relations</mat-checkbox>
+          <br *ngIf="isSearching">
+          <button class="form-control col-md-2" style="margin-bottom:20px" type="submit" mat-raised-button>Rechercher</button>
         </div>
         <div class="row">
           <div *ngIf="choosenRelations.length>0" class="col-md-12">

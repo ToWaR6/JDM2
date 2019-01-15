@@ -23,8 +23,8 @@ export class RequesterService {
     return EMPTY;
   }
 
-  public getJson(word, relationName): Observable<any>{
-    return this.http.get(this.url + "/relation?mot="+word+"&relation=r_"+relationName);
+  public getJson(word, relationName,entrante): Observable<any>{
+    return this.http.get(this.url + "/relation?mot="+word+"&relation=r_"+relationName + "&type="+(entrante?"entrante":"sortante"));
   }
 }
 

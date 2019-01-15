@@ -18,7 +18,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {TableResultComponent} from './search/result/table-result/table-result.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { HttpClientModule } from '@angular/common/http'; 
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     TableResultComponent
   ],
   imports: [
+    MatCheckboxModule,
     MatProgressSpinnerModule,
     HttpClientModule,
     MatSortModule,

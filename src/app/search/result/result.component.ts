@@ -25,7 +25,7 @@ export class ResultComponent implements OnInit,OnChanges {
     this.tabsSources = new Array<RelationTable>();
     for(let relation of this.relations){
       let relationTable = new RelationTable();
-      this.requester.getJson(relation.word,relation.name).subscribe(data => {
+      this.requester.getJson(relation.word,relation.name,relation.entrante).subscribe(data => {
         relationTable.dataSource = new MatTableDataSource(data);
       });
       relationTable.dataSource = new MatTableDataSource();

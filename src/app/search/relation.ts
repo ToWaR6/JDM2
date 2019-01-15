@@ -1,4 +1,5 @@
 export interface Relation{
+    entrante:Boolean;
     name :string;
     word :string;
     words :Word[];
