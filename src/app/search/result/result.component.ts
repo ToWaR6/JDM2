@@ -1,9 +1,8 @@
-import { Component, OnInit ,OnChanges, Input, SimpleChanges} from '@angular/core';
+import { Component, OnInit ,OnChanges, Input,EventEmitter, SimpleChanges, Output} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
-import {Relation,Word} from '../relation'
-import {Observable} from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {Relation,Word} from '../relation';
 import { RequesterService } from '../requester.service';
+import { NgOnChangesFeature } from '@angular/core/src/render3';
 
 export class RelationTable{
   name:string;
@@ -17,8 +16,8 @@ export class RelationTable{
 })
 export class ResultComponent implements OnInit,OnChanges {
   @Input() relations: Relation[];
+  @Output() wordSelected= new EventEmitter<String>();
   tabsSources = new Array<RelationTable>(); //array of dataSource for the tables
-
   ngOnInit() {}
   constructor(private requester:RequesterService){}
   ngOnChanges(changes: SimpleChanges){
@@ -32,6 +31,10 @@ export class ResultComponent implements OnInit,OnChanges {
       relationTable.name = relation.name;
       this.tabsSources.push(relationTable);
     }
+  }
+
+  onWordSelected(event){
+    this.wordSelected.emit(event);
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ViewChild, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input,ViewChild, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { DataSource } from '@angular/cdk/table';
@@ -10,12 +10,18 @@ import { Word } from '../../relation'
 })
 export class TableResultComponent implements OnInit, OnChanges {
   @Input() dataSourceInput: MatTableDataSource<Word>;
+  @Output() wordSelected=  new EventEmitter<String>();
   displayedColumns: string[] = ['position', 'noeud.motFormate', 'poids'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor() { }
 
   ngOnInit() {
+
+  }
+
+  selectRow(row){
+    this.wordSelected.emit(row.noeud.motFormate);
   }
   ngOnChanges(changes: SimpleChanges) {
     this.dataSourceInput.sortingDataAccessor = this.customSortingDataAccessor;

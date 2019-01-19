@@ -43,7 +43,7 @@ export class SearchComponent {
   definition:string;
   isLoading=true;
   toogle=false;
-  entrante = true;
+  entrante = false;
   constructor(private fb: FormBuilder, private http: HttpClient, private requester: RequesterService) {
     this.getJSON().subscribe(data => {
       this.relationGroups = data;
@@ -134,16 +134,16 @@ export class SearchComponent {
   onSubmit() {
     let wordToSearch = this.searchForm.get('searchWordForm').value;
     if (wordToSearch.trim().length > 0 && this.choosenRelations.length > 0)
-      this.isSearching = true;
+    this.isSearching = true;
     this.results = [];
     this.requester.getDefinition(wordToSearch).subscribe(data=>{
       if(data != null){
-       if(data['exist']){
-         this.definition = "Définition : " + data['value'];
-       }else if(data['exist'] != null){
-         this.definition = "Pour obtenir une définition essayez avec : ";
-         this.definition += data['value'].map(item => item.noeud.motFormate).join(', ');
-       }
+      if(data['exist']){
+        this.definition = "Définition : " + data['value'];
+      }else if(data['exist'] != null){
+        this.definition = "Pour obtenir une définition essayez avec : ";
+        this.definition += data['value'].map(item => item.noeud.motFormate).join(', ');
+      }
       }else{
         this.definition = "Désolé, ce mot n'existe pas."
       }
@@ -157,4 +157,11 @@ export class SearchComponent {
       });
     }
   }
+  onWordSelected(event){
+    this.searchForm.get('searchWordForm').setValue(event);
+    this.onSubmit();
+  }
+
+
+
 }

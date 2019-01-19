@@ -52,6 +52,6 @@
         {{definition}}
     </p>
   </div>
-  <app-result *ngIf="isSearching" [relations]="results"></app-result>
+  <app-result (wordSelected)="onWordSelected($event)" *ngIf="isSearching" [relations]="results"></app-result>
 
 </div>
