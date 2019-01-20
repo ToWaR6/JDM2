@@ -9,25 +9,23 @@ import { Word } from '../../relation'
   styleUrls: ['./table-result.component.css']
 })
 export class TableResultComponent implements OnInit, OnChanges {
-  @Input() dataSourceInput: MatTableDataSource<Word>;
+  @Input() dataSourceInput = new MatTableDataSource<Word>();
   @Output() wordSelected=  new EventEmitter<String>();
   displayedColumns: string[] = ['position', 'noeud.motFormate', 'poids'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor() { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   selectRow(row){
     this.wordSelected.emit(row.noeud.motFormate);
   }
   ngOnChanges(changes: SimpleChanges) {
-    this.dataSourceInput.sortingDataAccessor = this.customSortingDataAccessor;
-    this.dataSourceInput.sort = this.sort;
-    this.dataSourceInput.sortData = this.customSortData;
-    this.dataSourceInput.paginator = this.paginator;
+      this.dataSourceInput.sortingDataAccessor = this.customSortingDataAccessor;
+      this.dataSourceInput.sort = this.sort;
+      this.dataSourceInput.sortData = this.customSortData;
+      this.dataSourceInput.paginator = this.paginator;
   }
   /**
    * Custom sorting data Accessor to access a property 

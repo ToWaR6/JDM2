@@ -1,7 +1,7 @@
 <div class="row">
 <mat-tab-group class="col-md-12">
   <mat-tab *ngFor="let tabsSource of tabsSources" [label]="tabsSource.name">
-    <app-table-result (wordSelected)="onWordSelected($event)" [dataSourceInput]="tabsSource.dataSource"></app-table-result>
+    <app-table-result style="cursor:pointer" (wordSelected)="onWordSelected($event)" [dataSourceInput]="tabsSource.dataSource"></app-table-result>
   </mat-tab>
 </mat-tab-group>
 </div>

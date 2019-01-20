@@ -88,9 +88,14 @@ export class SearchComponent {
     if (event.source != undefined) { //Si c'est mat-option
       value = this._getRelationFromName(event.source.value);
       event.source.value = "";
-    } else { //Si c'est un input classique
+    } else if(event.isUserInput){ //Si c'est un clique classique
       value = this._getRelationFromName(event.explicitOriginalTarget.value);
       event.explicitOriginalTarget.value = "";
+    }
+    else if(event.code == "Enter"){
+      value = this._getRelationFromName(event.target.value);
+      event.target.value = "";
+      event.target.focus();
     }
     for (let relationGroup of this.relationGroups) {
       for (let relation of relationGroup.relations) {
