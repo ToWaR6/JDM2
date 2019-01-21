@@ -143,16 +143,17 @@ export class SearchComponent {
     this.results = [];
     this.requester.getDefinition(wordToSearch).subscribe(data=>{
       if(data != null){
-      if(data['exist']){
-        this.definition = "Définition : " + data['value'];
-      }else if(data['exist'] != null){
-        this.definition = "Pour obtenir une définition essayez avec : ";
-        this.definition += data['value'].map(item => item.noeud.motFormate).join(', ');
-      }
+        if(data['exist']){
+          this.definition = "Définition : " + data['value'];
+        }else if(!data['exist']){
+          if(data['value'].length>0)
+            this.definition = "Pour obtenir une définition essayez avec : " +  data['value'].map(item => item.noeud.motFormate).join(', ');
+          else
+            this.definition = "Désolé, ce mot n'a pas de définition."
+        }
       }else{
         this.definition = "Désolé, ce mot n'existe pas."
-      }
-    })
+      }});
     for (let relation of this.choosenRelations) {
       this.results.push({
         "entrante" : this.entrante,
